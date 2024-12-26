@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "7666b4e8cfc1b16441a129264c187eac",
+    "Name": "Anti-Recall",
+    "Repo": "xh321/LiteLoaderQQNT-Anti-Recall",
+    "Description": "防撤回",
+    "Branch": "release"
+  },
+  {
+    "Id": "9001623b5ed32be6cf2b0402cee497a6",
+    "Name": "QR-Decode",
+    "Repo": "xh321/LiteLoaderQQNT-QR-Decode",
+    "Description": "二维码解码",
+    "Branch": "release"
+  },
+  {
+    "Id": "ae3dd86b3df348f890be716afed73b94",
+    "Name": "Kill-Update",
+    "Repo": "xh321/LiteLoaderQQNT-Kill-Update",
+    "Description": "屏蔽更新",
+    "Branch": "master"
+  },
+  {
+    "Id": "8064f88bdd8e1f8a1f0407f3cdfc5969",
+    "Name": "Directly-Jump",
+    "Repo": "xh321/LiteLoaderQQNT-Directly-Jump",
+    "Description": "跳转直链",
+    "Branch": "master"
+  },
+  {
+    "Id": "8625c7b782a8e1959522bdb8978cefaf",
+    "Name": "Brevity-btn",
+    "Repo": "hacker-frok/LiteLoaderQQNT-Plugin-Brevity-btn",
+    "Description": "收起侧边栏",
+    "Branch": "master"
+  }
+]
