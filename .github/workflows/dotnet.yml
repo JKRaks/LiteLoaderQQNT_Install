@@ -24,10 +24,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Generate Version
-      id: gen_version
-      run: echo ::set-output name=version::$(date +'%Y%m%d%H%M%S')
-      
     - name: Build-x64-framework
       run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/framework/64/liteloader
     - name: Zip the Build
@@ -47,6 +43,10 @@ jobs:
       run: dotnet publish -c Release -r win-x86 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/86/liteloader
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
+      
+    - name: Generate Version
+      id: gen_version
+      run: echo ::set-output name=version::$(date +'%Y%m%d%H%M%S')
       
     - name: Create Release
       id: create_release
