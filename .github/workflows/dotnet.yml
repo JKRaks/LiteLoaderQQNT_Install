@@ -23,6 +23,11 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
+
+    - name: Generate Version
+      id: gen_version
+      run: echo ::set-output name=version::$(date +'%Y%m%d%H%M%S')
+      
     - name: Build-x64-framework
       run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/framework/64/liteloader
     - name: Zip the Build
@@ -49,8 +54,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: Release
-        release_name: Release publish
+        tag_name: ${{ steps.gen_version.outputs.version }}
+        release_name: Release publish ${{ steps.gen_version.outputs.version }}
         body: '-framework 为包含框架'
         draft: false
         prerelease: false
