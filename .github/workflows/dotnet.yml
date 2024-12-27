@@ -46,6 +46,8 @@ jobs:
     - name: Release Drafter
       uses: release-drafter/release-drafter@v6.0.0
       id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         disable-autolabeler: false
     
