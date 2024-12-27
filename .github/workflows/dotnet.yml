@@ -44,21 +44,15 @@ jobs:
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
 
-    - name: Generate Version
-      run: echo "ver=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
-
-    - name: Create Release
+    - name: Auto Increment Version
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions-ecosystem/action-create-release@v1
       with:
-        tag_name: v ${{ env.ver }}
-        release_name: Release publish ${{ env.ver }}
-        body: '-framework 为包含框架'
-        draft: false
-        prerelease: false
-        
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag_prefix: 'v'
+        release_name_prefix: 'Release v'
+        target_commitish: 'master'
+
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:
