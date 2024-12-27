@@ -55,7 +55,7 @@ jobs:
         VERSION_CODE: ${{ steps.version_code.outputs.version_code }}
       with:
         disable-autolabeler: false        
-        tag_name: v$VERSION_CODE
+        tag_name: ${{ steps.version_code.outputs.version_code }}
         release_name: Release publish 
         body: '-framework 为包含框架'
         draft: false
