@@ -46,7 +46,7 @@ jobs:
       
     - name: Generate Version
       id: gen_version
-      run: echo ::set-output name=version::$(date +'%Y%m%d%H%M%S')
+      run: echo "version=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
       
     - name: Create Release
       id: create_release
@@ -54,8 +54,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.gen_version.outputs.version }}
-        release_name: Release publish ${{ steps.gen_version.outputs.version }}
+        tag_name: ${{ env.version }}
+        release_name: Release publish ${{ env.version }}
         body: '-framework 为包含框架'
         draft: false
         prerelease: false
