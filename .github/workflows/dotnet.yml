@@ -43,16 +43,11 @@ jobs:
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1.14.0
+    - name: Release Drafter
+      uses: release-drafter/release-drafter@v6.0.0
       id: create_release
       with:
-        generateReleaseNotes: true
-        token: ${{ github.token }}
-        allowUpdates: true
-        body: |
-          自动构建版本
-          -framework为包含框架的版本
+        disable-autolabeler: false
     
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
