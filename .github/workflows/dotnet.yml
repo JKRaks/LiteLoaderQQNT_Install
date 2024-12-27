@@ -29,7 +29,7 @@ jobs:
       run: powershell Compress-Archive -Path './bin/Release/framework/64/liteloader' -DestinationPath './liteloader-x64-framework.zip'
       
     - name: Build-x64
-      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/liteloader
+      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/64/liteloader
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/64/liteloader' -DestinationPath './liteloader-x64.zip'
       
@@ -39,9 +39,9 @@ jobs:
       run: powershell Compress-Archive -Path './bin/Release/framework/86/liteloader' -DestinationPath './liteloader-x86-framework.zip'
       
     - name: Build-x86
-      run: dotnet publish -c Release -r win-x86 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/liteloader-x86
+      run: dotnet publish -c Release -r win-x86 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/86/liteloader
     - name: Zip the Build
-      run: powershell Compress-Archive -Path './bin/Release/unframework/liteloader-x86' -DestinationPath './liteloader-x86.zip'
+      run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
       
     - name: Create Release
       id: create_release
