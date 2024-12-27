@@ -42,15 +42,20 @@ jobs:
       run: dotnet publish -c Release -r win-x86 -p:PublishSingleFile=true -p:PublishReadyToRun=true -o ./bin/Release/unframework/86/liteloader
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
-
+    
+    - name: Generate Version
+      id: version_code
+      run: echo "version_code=$(date +'%Y%m%d%H%M')" >> $env:GITHUB_OUTPUT
+      
     - name: Create Release 
       id: create_release     
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION_CODE: ${{ steps.version_code.outputs.version_code }}
       with:
         disable-autolabeler: false        
-        tag_name: v${{github.GITHUB_RUN_ID}}
+        tag_name: v$VERSION_CODE
         release_name: Release publish 
         body: '-framework 为包含框架'
         draft: false
