@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -44,15 +43,17 @@ jobs:
     - name: Zip the Build
       run: powershell Compress-Archive -Path './bin/Release/unframework/86/liteloader' -DestinationPath './liteloader-x86.zip'
 
-    - name: Auto Increment Version
+    - name: Create Release
+      uses: ncipollo/release-action@v1.14.0
       id: create_release
-      uses: actions-ecosystem/action-create-release@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag_prefix: 'v'
-        release_name_prefix: 'Release v'
-        target_commitish: 'master'
-
+        generateReleaseNotes: true
+        token: ${{ github.token }}
+        allowUpdates: true
+        body: |
+          自动构建版本
+          -framework为包含框架的版本
+    
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:
